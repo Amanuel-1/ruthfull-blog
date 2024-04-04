@@ -1,3 +1,4 @@
+
 import {defineField, defineType} from 'sanity'
 
 export default defineType({
@@ -5,6 +6,31 @@ export default defineType({
   title: 'Post',
   type: 'document',
   fields: [
+  
+    defineField(
+      {
+        name: 'likes',
+        title: 'Likes',
+        type: 'number',
+        initialValue: 0,
+      }
+    ),
+    defineField(
+      {
+        name: 'dislikes',
+        title: 'Dislikes',
+        type: 'number',
+        initialValue: 0,
+      }
+    ),
+    defineField(
+      {
+        name: 'views',
+        title: 'Views',
+        type: 'number',
+        initialValue: 0,
+      }
+    ),
     defineField({
       name: 'title',
       title: 'Title',
@@ -26,12 +52,24 @@ export default defineType({
       to: {type: 'author'},
     }),
     defineField({
+      name: 'description',
+      title: 'description',
+      type: 'string',
+    }),
+    defineField({
       name: 'mainImage',
       title: 'Main image',
       type: 'image',
       options: {
         hotspot: true,
       },
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative Text',
+        }
+      ]
     }),
     defineField({
       name: 'categories',
@@ -49,8 +87,21 @@ export default defineType({
       title: 'Body',
       type: 'blockContent',
     }),
+    defineField({
+      name: 'audio',
+      title: 'Podcast media file',
+      description:
+        'Most podcatchers support .mp3, but other audio-formats may work as well',
+      type: 'file'
+    }),
+    defineField({
+      name: 'fileUrl',
+      title: 'External location for podcast media file',
+      description: 'For when you host your podcast media file elsewhere',
+      type: 'url'
+    }),
   ],
-
+    
   preview: {
     select: {
       title: 'title',
